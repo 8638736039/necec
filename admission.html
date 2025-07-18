@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admission Form - NECEC Gohpur</title>
+</head>
+<body>
+  <h2>NECEC Admission Form</h2>
+  <form name="submit-to-google-sheet">
+    <input name="Full Name" placeholder="Full Name" required /><br/>
+    <input name="Father's Name" placeholder="Father's Name" required /><br/>
+    <input name="Date of Birth" type="date" required /><br/>
+    <input name="Mobile Number" type="tel" required /><br/>
+    <input name="Email" type="email" /><br/>
+    <input name="Qualification" placeholder="Your Last Qualification" required /><br/>
+    <select name="Course">
+      <option>CCA</option>
+      <option>DTP</option>
+      <option>Tally</option>
+      <option>Advanced Tally</option>
+      <option>DCA</option>
+      <option>PGDCA</option>
+      <option>MS Office</option>
+      <option>Typing</option>
+      <option>Video Editing</option>
+      <option>Modeling</option>
+    </select><br/>
+    <textarea name="Address" placeholder="Your Full Address" required></textarea><br/>
+    <input type="submit" value="Submit" />
+  </form>
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+    const form = document.forms['submit-to-google-sheet'];
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Form submitted successfully"))
+        .catch(error => alert('Error!', error.message));
+    });
+  </script>
+</body>
+</html>
